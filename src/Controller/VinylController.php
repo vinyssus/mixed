@@ -31,13 +31,26 @@ class VinylController extends AbstractController
         ]);
     }
 
+    private $httpClient;
+    private $cache;
+
+    public function __construct(HttpClientInterface $httpClient,CacheInterface $cache)
+    {
+        $this->httpClient = $httpClient;
+        $this->cache = $cache;
+    }
+
+    
+ 
+
     #[Route('/browse/{slug}', name: 'app_browse')]
-    public function browse(HttpClientInterface $httpClient,CacheInterface $cache, string $slug = null): Response
+    public function browse(string $slug = null): Response
     {
         $genre = $slug ? u(str_replace('-', ' ', $slug))->title(true) : null;
-       $mixes = $cache->get('cache_data', function(CacheItemInterface $cacheItem) use($httpClient){
+        
+       $mixes = $this->cache->get('cache_data', function(CacheItemInterface $cacheItem){
         $cacheItem->expiresAfter(5);
-        $response = $httpClient->request('GET','https://gist.githubusercontent.com/vinyssus/ab8f424657e1fc2827644589041129cc/raw/69234103ea700500869ab468927738ba25b5ed57/mixed.json');
+        $response = $this->httpClient->request('GET','https://gist.githubusercontent.com/vinyssus/ab8f424657e1fc2827644589041129cc/raw/2336904b2d9a673b93a76bd718b0fb550415a771/mixed.json');
         return $response->toArray();
        });
 
