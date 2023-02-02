@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create a new Record | {{ parent() }}{% endblock %}
+{% block title %}{% trans %}Create a new Record{% endtrans %} | {{ parent() }}{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -52,7 +52,7 @@
                 </div>
             </div>
             {% endfor %}
-            <button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Add a song</button>
+            <button type="button" class="btn btn-success"><i class="fas fa-plus"></i>{% trans %} Add a song{% endtrans %}</button>
         </div>
     </div>
 </div>

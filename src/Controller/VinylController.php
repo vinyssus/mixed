@@ -10,6 +10,7 @@ use  Knp\Bundle\TimeBundle\DateTimeFormatter;
 use Psr\Cache\CacheItemInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class VinylController extends AbstractController
 {
@@ -33,11 +34,13 @@ class VinylController extends AbstractController
 
     private $httpClient;
     private $cache;
+    private $translate;
 
-    public function __construct(HttpClientInterface $httpClient,CacheInterface $cache)
+    public function __construct(HttpClientInterface $httpClient,CacheInterface $cache,TranslatorInterface $translate)
     {
         $this->httpClient = $httpClient;
         $this->cache = $cache;
+        $this->translate = $translate;
     }
 
     
@@ -51,6 +54,8 @@ class VinylController extends AbstractController
        $mixes = $this->cache->get('cache_data', function(CacheItemInterface $cacheItem){
         $cacheItem->expiresAfter(5);
         $response = $this->httpClient->request('GET','https://gist.githubusercontent.com/vinyssus/ab8f424657e1fc2827644589041129cc/raw/2336904b2d9a673b93a76bd718b0fb550415a771/mixed.json');
+        // $message = $this->translate->trans('Symfony is great');
+        // echo $message;
         return $response->toArray();
        });
 

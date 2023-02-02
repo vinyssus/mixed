@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="0jg4sef" resname="Symfony is great">
+        <source>Symfony is great</source>
+        <target>Symfony est bien</target>
+      </trans-unit>
+      <trans-unit id="ew1Hg9v" resname="Mixed Vinyl">
+        <source>Mixed Vinyl</source>
+        <target>Mixé par vinyssus</target>
+      </trans-unit>
+      <trans-unit id="yB9H0YD" resname="Browse Mixes">
+        <source>Browse Mixes</source>
+        <target>Liste des mixes</target>
+      </trans-unit>
+      <trans-unit id="mGGq1Ex" resname="My Mixes">
+        <source>My Mixes</source>
+        <target>Mes mixes</target>
+      </trans-unit>
+      <trans-unit id="ivRXtRR" resname="Signout">
+        <source>Signout</source>
+        <target>Déconnexion</target>
+      </trans-unit>
+      <trans-unit id="ZwlTeNK" resname="The guys and gals at">
+        <source>The guys and gals at</source>
+        <target>__The guys and gals at</target>
+      </trans-unit>
+      <trans-unit id="MieqlmY" resname="Browse">
+        <source>Browse</source>
+        <target>Liste</target>
+      </trans-unit>
+      <trans-unit id="WBV8NXv" resname="Filter by Genre">
+        <source>Filter by Genre</source>
+        <target>Filtré par le genre</target>
+      </trans-unit>
+      <trans-unit id="0qvip3h" resname="All Accordion">
+        <source>All Accordion</source>
+        <target>Tout les accordion</target>
+      </trans-unit>
+      <trans-unit id="CvOZhRg" resname="Mixes">
+        <source>Mixes</source>
+        <target>Mixes</target>
+      </trans-unit>
+      <trans-unit id="qgQfRXp" resname="Create a new Record">
+        <source>Create a new Record</source>
+        <target>Créer un nouvel enregistrement</target>
+      </trans-unit>
+      <trans-unit id="SlA4Rn2" resname="Add a song">
+        <source>Add a song</source>
+        <target>Ajouté une musique</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

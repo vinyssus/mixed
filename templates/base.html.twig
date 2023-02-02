@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Mixed Vinyl{% endblock %}</title>
+        <title>{% block title %}{% trans %}Mixed Vinyl{% endtrans %}{% endblock %}</title>
 
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
@@ -24,7 +24,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ path('app_homepage') }}">
                     <i class="fas fa-record-vinyl"></i>
-                    Mixed Vinyl
+                    {% trans %}Mixed Vinyl{% endtrans %}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -32,7 +32,7 @@
                 <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" style="margin-top: 20px;" href="{{ path('app_browse') }}">Browse Mixes</a>
+                            <a class="nav-link" style="margin-top: 20px;" href="{{ path('app_browse') }}">{% trans %}Browse Mixes{% endtrans %}</a>
                         </li>
                         <!-- Not Authenticated -->
                             <!-- <li class="nav-item"><button href="#" class="btn btn-primary btn-sm">Login</button></li> -->
@@ -44,8 +44,8 @@
                                 <i class="fas fa-user-astronaut p-2" style="border: solid 1px #fff; border-radius: 50px; font-size: 40px;"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">My Mixes</a></li>
-                                <li><a class="dropdown-item" href="#">Signout</a></li>
+                                <li><a class="dropdown-item" href="#">{% trans %}My Mixes{% endtrans %}</a></li>
+                                <li><a class="dropdown-item" href="#">{% trans %}Signout{% endtrans %}</a></li>
                             </ul>
                         </li>
                         <!-- End If Authenticated -->
@@ -62,7 +62,7 @@
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <div class="col-md-4 d-flex align-items-center">
                     <span class="me-1" style="color: red;"><i class="fas fa-heart"></i></span>
-                    <span class="text-muted me-1">The guys and gals at</span>
+                    <span class="text-muted me-1">{% trans %}The guys and gals at{% endtrans %}</span>
                     <a target="_blank" href="https://symfonycasts.com/" style="color: #25a1dd" class="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
                         SymfonyCasts
                     </a>
