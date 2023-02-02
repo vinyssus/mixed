@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\String\u;
-use  Knp\Bundle\TimeBundle\DateTimeFormatter;
 use Psr\Cache\CacheItemInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -32,28 +31,18 @@ class VinylController extends AbstractController
         ]);
     }
 
-    private $httpClient;
-    private $cache;
-    private $translate;
-
-    public function __construct(HttpClientInterface $httpClient,CacheInterface $cache,TranslatorInterface $translate)
-    {
-        $this->httpClient = $httpClient;
-        $this->cache = $cache;
-        $this->translate = $translate;
-    }
 
     
  
 
     #[Route('/browse/{slug}', name: 'app_browse')]
-    public function browse(string $slug = null): Response
+    public function browse(HttpClientInterface $httpClient,CacheInterface $cache,TranslatorInterface $translate,string $slug = null): Response
     {
         $genre = $slug ? u(str_replace('-', ' ', $slug))->title(true) : null;
         
-       $mixes = $this->cache->get('cache_data', function(CacheItemInterface $cacheItem){
+       $mixes = $cache->get('cache_data', function(CacheItemInterface $cacheItem)use($httpClient){
         $cacheItem->expiresAfter(5);
-        $response = $this->httpClient->request('GET','https://gist.githubusercontent.com/vinyssus/ab8f424657e1fc2827644589041129cc/raw/2336904b2d9a673b93a76bd718b0fb550415a771/mixed.json');
+        $response = $httpClient->request('GET','https://gist.githubusercontent.com/vinyssus/ab8f424657e1fc2827644589041129cc/raw/2336904b2d9a673b93a76bd718b0fb550415a771/mixed.json');
         // $message = $this->translate->trans('Symfony is great');
         // echo $message;
         return $response->toArray();
