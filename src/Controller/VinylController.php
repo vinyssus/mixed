@@ -2,14 +2,11 @@
 
 namespace App\Controller;
 
+use App\Service\MixRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\String\u;
-use Psr\Cache\CacheItemInterface;
-use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class VinylController extends AbstractController
 {
@@ -36,17 +33,11 @@ class VinylController extends AbstractController
  
 
     #[Route('/browse/{slug}', name: 'app_browse')]
-    public function browse(HttpClientInterface $httpClient,CacheInterface $cache,TranslatorInterface $translate,string $slug = null): Response
+    public function browse(MixRepository $mixRepository,string $slug = null): Response
     {
         $genre = $slug ? u(str_replace('-', ' ', $slug))->title(true) : null;
         
-       $mixes = $cache->get('cache_data', function(CacheItemInterface $cacheItem)use($httpClient){
-        $cacheItem->expiresAfter(5);
-        $response = $httpClient->request('GET','https://gist.githubusercontent.com/vinyssus/ab8f424657e1fc2827644589041129cc/raw/2336904b2d9a673b93a76bd718b0fb550415a771/mixed.json');
-        // $message = $this->translate->trans('Symfony is great');
-        // echo $message;
-        return $response->toArray();
-       });
+       $mixes = $mixRepository->findAll();
 
         // foreach($mixes as $key => $mix){
         //     $mixes[$key]['ago'] = $timeFormater->formatDiff($mix['createdAt']);
