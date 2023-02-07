@@ -36,11 +36,7 @@ class MixRepository{
     {
         return $this->cache->get('cache_data', function(CacheItemInterface $cacheItem){
             $cacheItem->expiresAfter($this->isDebug ? 5 : 60);
-            $response = $this->githubContentClient->request('GET','/vinyssus/ab8f424657e1fc2827644589041129cc/raw/2336904b2d9a673b93a76bd718b0fb550415a771/mixed.json',[
-                'headers' => [
-                    'Authorization' => 'Token ghp_foo_bar',
-                ]
-            ]);
+            $response = $this->githubContentClient->request('GET','/vinyssus/mixed/main/file.json');
             // $message = $this->translate->trans('Symfony is great');
             // echo $message;
             // if ($this->defauld_langue == 'en'){
