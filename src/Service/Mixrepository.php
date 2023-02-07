@@ -12,6 +12,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class MixRepository{
 
+    
+
     private $githubContentClient;
     private $cache;
     // private bool $isDebug;
@@ -34,6 +36,7 @@ class MixRepository{
 
     public function findAll(): array
     {
+
         return $this->cache->get('cache_data', function(CacheItemInterface $cacheItem){
             $cacheItem->expiresAfter($this->isDebug ? 5 : 60);
             $response = $this->githubContentClient->request('GET','/vinyssus/mixed/main/file.json');
